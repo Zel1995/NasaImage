@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NasaImage</string>
+    <string name="request">введите запрос</string>
+    <string name="yesterday">yesterday</string>
+    <string name="today">today</string>
+    <string name="before_yesterday">before yesterday</string>
+    <string name="NASA">NASA</string>
+    <string name="open_info">Open info</string>
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="myBgColor" format="color" />
+    <attr name="myBottomBehaviorBgColor" format="color"/>
+    <attr name="myBrownColor" format="color"/>
+    <attr name="myOrangeColor" format="color"/>
+    <attr name="myPinkDarkColor" format="color"/>
+</resources>

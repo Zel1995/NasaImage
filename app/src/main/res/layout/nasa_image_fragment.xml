@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/background_color"
+    android:background="?attr/myBgColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.NasaImageFragment">
@@ -13,7 +13,6 @@
         android:layout_height="?attr/actionBarSize">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="@color/behavior_background_color"
             app:title="@string/NASA"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -34,14 +33,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/text_input_layout_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
             android:layout_marginTop="4dp"
             android:hint="@string/request"
-            app:hintTextColor="@color/black"
-            app:boxStrokeColor="@color/black"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/ic_wikipedia"
             app:endIconMode="custom"
@@ -61,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
+            app:chipSpacingHorizontal="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textInputLayout"
@@ -68,20 +66,18 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/before_yesterday"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                app:rippleColor="@color/brown"
-                android:textColor="@color/black"
-                app:chipSurfaceColor="@color/orange"
+                style="@style/chips_choice_style"
+                app:checkedIconEnabled="true"
+                android:checkable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/before_yesterday" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/yesterday"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                app:rippleColor="@color/brown"
-                android:textColor="@color/black"
-                app:chipSurfaceColor="@color/orange"
+                style="@style/chips_choice_style"
+                app:checkedIconEnabled="true"
+                android:checkable="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/yesterday" />
@@ -89,11 +85,10 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/today"
                 android:checked="true"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                app:rippleColor="@color/brown"
-                android:textColor="@color/black"
-                app:chipSurfaceColor="@color/orange"
+                style="@style/chips_choice_style"
                 android:layout_width="wrap_content"
+                app:checkedIconEnabled="true"
+                android:checkable="true"
                 android:layout_height="wrap_content"
                 android:text="@string/today" />
 
@@ -102,10 +97,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="?attr/myBgColor"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,13 +108,15 @@
             app:layout_constraintTop_toBottomOf="@+id/chip_group">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/nasa_img"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="matrix"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -133,9 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             app:cornerRadius="5dp"
-            android:textColor="@color/black"
             android:text="@string/open_info"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,17 +140,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_behavior_container"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="200dp"
-        android:background="@color/behavior_background_color"
+        style="@style/bottom_behavior_style"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/bottom_sheet_behavior">
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/view"
-            android:layout_width="25dp"
-            android:layout_height="1dp"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
@@ -166,10 +158,9 @@
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            style="@style/title_text_style"
             tools:text="Title"
             android:gravity="center"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -181,7 +172,6 @@
             android:layout_height="wrap_content"
             tools:text="info from NASA API"
             android:textStyle="italic"
-            android:textColor="@color/black"
             android:layout_margin="@dimen/default_large_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

@@ -2,7 +2,8 @@ package com.example.nasaimage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.nasaimage.ui.main.MainFragment
+import com.example.nasaimage.data.di.App
+import com.example.nasaimage.ui.main.NasaImageFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,8 +12,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
+                .replace(R.id.container, NasaImageFragment())
                 .commitNow()
         }
+
+        (application as? App)?.appComponent?.inject(this)
     }
 }

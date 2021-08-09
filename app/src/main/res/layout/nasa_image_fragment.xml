@@ -3,27 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="?attr/myBgColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/myBgColor"
     tools:context=".ui.main.NasaImageFragment">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:title="@string/NASA"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
         android:id="@+id/progress"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/nasa_layout"
@@ -53,75 +43,39 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            app:chipSpacingHorizontal="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textInputLayout"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/before_yesterday"
-                style="@style/chips_choice_style"
-                app:checkedIconEnabled="true"
-                android:checkable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/before_yesterday" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/yesterday"
-                style="@style/chips_choice_style"
-                app:checkedIconEnabled="true"
-                android:checkable="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/yesterday" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/today"
-                android:checked="true"
-                style="@style/chips_choice_style"
-                android:layout_width="wrap_content"
-                app:checkedIconEnabled="true"
-                android:checkable="true"
-                android:layout_height="wrap_content"
-                android:text="@string/today" />
-
-
-        </com.google.android.material.chip.ChipGroup>
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="360dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_margin="@dimen/default_large_margin"
-            android:backgroundTint="?attr/myBgColor"
+            android:backgroundTint="?attr/myPinkDarkColor"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chip_group">
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/nasa_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="300dp"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="matrix"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:backgroundTint="?attr/myPinkDarkColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabGravity="fill"
+                    app:tabIndicatorAnimationDuration="100"
+                    app:tabMode="fixed" />
+            </androidx.viewpager.widget.ViewPager>
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -130,8 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
-            app:cornerRadius="5dp"
             android:text="@string/open_info"
+            app:cornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -156,27 +110,27 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/title_text_style"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/title_text_style"
-            tools:text="Title"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            tools:text="Title" />
 
         <TextView
             android:id="@+id/explanation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="info from NASA API"
-            android:textStyle="italic"
             android:layout_margin="@dimen/default_large_margin"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="info from NASA API" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

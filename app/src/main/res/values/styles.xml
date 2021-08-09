@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="chips_choice_style" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textColor">@color/black</item>
+        <item name="chipSurfaceColor">@color/chip_bg_selector</item>
+        <item name="rippleColor">?attr/myBrownColor</item>
+        <item name="android:checkable">true</item>
+    </style>
+    
+    <style name="text_input_layout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:backgroundTint">?attr/myBgColor</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="boxStrokeColor">@color/black</item>
+    </style>
+    <style name="bottom_behavior_style" >
+        <item name="behavior_hideable">true</item>
+        <item name="behavior_peekHeight">200dp</item>
+        <item name="android:background">?attr/myBottomBehaviorBgColor</item>
+        <item name="layout_behavior">@string/bottom_sheet_behavior</item>
+    </style>
+    <style name="myButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">5dp</item>
+        <item name="strokeColor">?attr/myBrownColor</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:backgroundTint">?attr/myBgColor</item>
+    </style>
+
+    <style name="title_text_style" parent="Widget.AppCompat.TextView">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="shapeSmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    
+</resources>

@@ -11,19 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
-import com.example.nasaimage.BuildConfig
 import com.example.nasaimage.R
 import com.example.nasaimage.data.di.App
-import com.example.nasaimage.data.network.NasaApi
-import com.example.nasaimage.data.repository.RepositoryImpl
 import com.example.nasaimage.databinding.NasaImageFragmentBinding
 import com.example.nasaimage.domain.usecase.NasaDataInteractor
 import com.example.nasaimage.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
 class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
@@ -34,18 +29,9 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
     }
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
-//Не инициализируется фэктори ,не могу понять в чем проблема
-    //@Inject
-    //lateinit var factory: NasaImageViewModelFactory
-    var factory: NasaImageViewModelFactory = NasaImageViewModelFactory(
-        NasaDataInteractor(
-            RepositoryImpl(
-                Retrofit.Builder().baseUrl(BuildConfig.BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build().create(NasaApi::class.java)
-            )
-        )
-    )
+
+    @Inject
+    lateinit var factory: NasaImageViewModelFactory
 
     private val viewBinding: NasaImageFragmentBinding by viewBinding(NasaImageFragmentBinding::bind)
     private val viewModel: NasaImageViewModel by viewModels {
@@ -54,7 +40,8 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().application as? App)?.appComponent?.inject(this)
+        (requireActivity().applicationContext as App).appComponent.inject(this)
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,15 +106,15 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.loading.collect {
-                   with(viewBinding){
-                       if(it){
-                           nasaLayout.visibility = View.GONE
-                           progress.visibility = View.VISIBLE
-                       } else {
-                           nasaLayout.visibility = View.VISIBLE
-                           progress.visibility = View.GONE
-                       }
-                   }
+                    with(viewBinding) {
+                        if (it) {
+                            nasaLayout.visibility = View.GONE
+                            progress.visibility = View.VISIBLE
+                        } else {
+                            nasaLayout.visibility = View.VISIBLE
+                            progress.visibility = View.GONE
+                        }
+                    }
 
                 }
             }

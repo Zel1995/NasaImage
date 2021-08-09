@@ -6,4 +6,7 @@
     <string name="before_yesterday">before yesterday</string>
     <string name="NASA">NASA</string>
     <string name="open_info">Open info</string>
+    <string name="set_default_theme">Set default theme</string>
+    <string name="set_blue_theme">Set blue theme</string>
+    <string name="settings">Settings</string>
 </resources>

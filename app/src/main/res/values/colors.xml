@@ -7,10 +7,17 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_color">#FDEFDB</color>
-    <color name="behavior_background_color">#F4D5A8</color>
+
+    <color name="background_color100">#FDEFDB</color>
+    <color name="behavior_background_color100">#F4D5A8</color>
     <color name="orange">#FFC268</color>
     <color name="brown">#A88044</color>
+    <color name="pink_dark">#D88AA0</color>
 
+    <color name="background_color200">#DFE9FF</color>
+    <color name="behavior_background_color200">#666FA1</color>
+    <color name="blue_light">#6AB4CA</color>
+    <color name="grey">#9CA7B1</color>
+    <color name="red">#6777D1</color>
 
 </resources>

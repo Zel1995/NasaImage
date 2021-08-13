@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.nasaimage.MainActivity
 import com.example.nasaimage.R
 import com.example.nasaimage.data.di.App
 import com.example.nasaimage.data.storage.ThemeStorage
@@ -41,7 +42,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().applicationContext as App).appComponent.inject(this)
+        (context as? MainActivity)?.mainSubcomponent?.inject(this)
     }
 
 

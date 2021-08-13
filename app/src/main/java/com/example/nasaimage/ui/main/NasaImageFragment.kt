@@ -8,9 +8,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import com.bumptech.glide.Glide
+import com.example.nasaimage.MainActivity
 import com.example.nasaimage.R
 import com.example.nasaimage.data.di.App
 import com.example.nasaimage.databinding.NasaImageFragmentBinding
@@ -33,6 +35,8 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
     @Inject
     lateinit var factory: NasaImageViewModelFactory
 
+    @Inject
+    lateinit var viewPagerAdapter: ViewPagerAdapter
     private val viewBinding: NasaImageFragmentBinding by viewBinding(NasaImageFragmentBinding::bind)
     private val viewModel: NasaImageViewModel by viewModels {
         factory
@@ -40,18 +44,22 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireActivity().applicationContext as App).appComponent.inject(this)
-
+        (context as? MainActivity)?.mainSubcomponent?.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         bottomSheetBehavior = BottomSheetBehavior.from(viewBinding.bottomBehaviorContainer)
-
         initViewModel()
-        initChpisListener()
         initListeners()
+        initViewPager()
         viewModel.fetchNasa(NASA_TODAY)
+    }
+
+
+
+    private fun initViewPager() {
+        viewBinding.viewPager.adapter = viewPagerAdapter
     }
 
     private fun initListeners() {
@@ -74,18 +82,6 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    private fun initChpisListener() {
-        viewBinding.yesterday.setOnClickListener {
-            viewModel.fetchNasa(NASA_YESTERDAY)
-        }
-        viewBinding.today.setOnClickListener {
-            viewModel.fetchNasa(NASA_TODAY)
-        }
-
-        viewBinding.beforeYesterday.setOnClickListener {
-            viewModel.fetchNasa(NASA_BEFORE_YESTERDAY)
-        }
-    }
 
     private fun initViewModel() {
         lifecycleScope.launch {
@@ -94,11 +90,6 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
                     with(viewBinding) {
                         title.text = it?.title
                         explanation.text = it?.explanation
-                        Glide.with(nasaImg)
-                            .load(it?.hdUrl)
-                            .placeholder(R.drawable.ic_launcher_foreground)
-                            .into(nasaImg)
-
                     }
                 }
             }

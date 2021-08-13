@@ -20,20 +20,8 @@ class ViewPagerAdapter @Inject constructor(private val fragmentManager: Fragment
     }
 
     override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> {
-                fragments[0]
-            }
-            1 -> {
-                fragments[1]
-            }
-            2 -> {
-                fragments[2]
-            }
-            else -> {
-                fragments[0]
-            }
-        }
+        return fragments[position]
+
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

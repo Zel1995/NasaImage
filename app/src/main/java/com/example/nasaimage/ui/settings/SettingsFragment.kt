@@ -17,6 +17,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     private lateinit var themeStorage: ThemeStorage
 
     private val viewBinding: FragmentSettingsBinding by viewBinding(FragmentSettingsBinding::bind)
+    private var showFabs = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         themeStorage = ThemeStorage(requireContext())
@@ -34,7 +35,23 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         viewBinding.blueRb.setOnClickListener {
             setMyTheme(R.style.Theme_NasaImage_Blue)
         }
+        initFabs()
     }
+
+    private fun initFabs() {
+        with(viewBinding) {
+
+            fab.setOnClickListener {
+                if (showFabs) {
+                    groupFab.visibility = View.VISIBLE
+                } else {
+                    groupFab.visibility = View.GONE
+                }
+                showFabs = !showFabs
+            }
+        }
+    }
+
     private fun setMyTheme(theme:Int){
         themeStorage.theme = theme
         requireActivity().recreate()

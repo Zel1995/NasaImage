@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nasaimage.data.di.App
 import com.example.nasaimage.data.storage.ThemeStorage
-import com.example.nasaimage.domain.router.MainRouter
-import com.example.nasaimage.ui.MainActivityModule
-import com.example.nasaimage.ui.MainSubcomponent
+import com.example.nasaimage.ui.router.MainRouter
+import com.example.nasaimage.data.di.subcomponents.MainActivityModule
+import com.example.nasaimage.data.di.subcomponents.MainSubcomponent
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject

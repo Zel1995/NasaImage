@@ -13,7 +13,6 @@ import androidx.lifecycle.*
 import com.example.nasaimage.MainActivity
 import com.example.nasaimage.R
 import com.example.nasaimage.databinding.NasaImageFragmentBinding
-import com.example.nasaimage.domain.router.MainRouter
 import com.example.nasaimage.domain.usecase.NasaDataInteractor
 import com.example.nasaimage.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior

@@ -1,7 +1,7 @@
-package com.example.nasaimage.ui
+package com.example.nasaimage.data.di.subcomponents
 
 import com.example.nasaimage.MainActivity
-import com.example.nasaimage.domain.router.RouterModule
+import com.example.nasaimage.ui.router.RouterModule
 import com.example.nasaimage.ui.main.NasaImageFragment
 import com.example.nasaimage.ui.main.subfragments.BeforeYesterdayFragment
 import com.example.nasaimage.ui.main.subfragments.TodayFragment
@@ -13,7 +13,7 @@ import dagger.Subcomponent
 interface MainSubcomponent {
     @Subcomponent.Factory
     interface Factory{
-        fun create(mainActivityModule: MainActivityModule):MainSubcomponent
+        fun create(mainActivityModule: MainActivityModule): MainSubcomponent
     }
 
     fun inject(nasaImageFragment: NasaImageFragment)

@@ -1,4 +1,4 @@
-package com.example.nasaimage.domain.router
+package com.example.nasaimage.ui.router
 
 import androidx.fragment.app.FragmentManager
 import com.example.nasaimage.R

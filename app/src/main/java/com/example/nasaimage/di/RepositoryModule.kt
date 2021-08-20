@@ -1,10 +1,12 @@
-package com.example.nasaimage.data.di
+package com.example.nasaimage.di
 
 import com.example.nasaimage.BuildConfig
 import com.example.nasaimage.data.network.NasaApi
+import com.example.nasaimage.data.repository.LocalRepositoryImpl
 import com.example.nasaimage.data.repository.RepositoryImpl
+import com.example.nasaimage.data.storage.NoteDao
+import com.example.nasaimage.domain.repository.LocalRepository
 import com.example.nasaimage.domain.repository.Repository
-import com.example.nasaimage.domain.usecase.NasaDataInteractor
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -25,4 +27,6 @@ class RepositoryModule {
             .build()
         return retrofit.create(NasaApi::class.java)
     }
+    @Provides
+    fun providesLocalRepository(noteDao: NoteDao):LocalRepository = LocalRepositoryImpl(noteDao)
 }

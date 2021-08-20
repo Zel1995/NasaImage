@@ -3,7 +3,6 @@ package com.example.nasaimage.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.nasaimage.data.repository.Success
-import com.example.nasaimage.data.storage.ThemeStorage
 import com.example.nasaimage.domain.model.Nasa
 import com.example.nasaimage.domain.usecase.NasaDataInteractor
 import kotlinx.coroutines.cancel

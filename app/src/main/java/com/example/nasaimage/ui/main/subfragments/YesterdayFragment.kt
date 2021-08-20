@@ -1,7 +1,10 @@
 package com.example.nasaimage.ui.main.subfragments
 
 import android.os.Bundle
+import android.transition.ChangeImageTransform
+import android.transition.TransitionManager
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,17 +22,34 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class YesterdayFragment:Fragment(R.layout.yesterday_fragment) {
+class YesterdayFragment : Fragment(R.layout.yesterday_fragment) {
     private val viewBinding: YesterdayFragmentBinding by viewBinding(
-        YesterdayFragmentBinding::bind)
+        YesterdayFragmentBinding::bind
+    )
+    private var bool = false
+
     @Inject
     lateinit var factory: NasaImageViewModelFactory
-    private val viewModel: NasaImageViewModel by viewModels{factory}
+    private val viewModel: NasaImageViewModel by viewModels { factory }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (context as? MainActivity)?.mainSubcomponent?.inject(this)
         viewModel.fetchNasa(NasaImageFragment.NASA_YESTERDAY)
         initViewModel()
+        animateImageViewScaleType()
+    }
+
+    private fun animateImageViewScaleType() {
+        viewBinding.yesterdayImg.setOnClickListener {
+            bool = !bool
+            TransitionManager.beginDelayedTransition(
+                viewBinding.yesterdayContainer,
+                ChangeImageTransform()
+            )
+            viewBinding.yesterdayImg.scaleType =
+                if (bool) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+        }
     }
 
     private fun initViewModel() {

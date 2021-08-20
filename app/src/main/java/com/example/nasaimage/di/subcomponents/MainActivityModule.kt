@@ -1,4 +1,4 @@
-package com.example.nasaimage.ui
+package com.example.nasaimage.di.subcomponents
 
 import androidx.appcompat.app.AppCompatActivity
 import dagger.Module

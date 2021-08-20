@@ -8,13 +8,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
-import com.bumptech.glide.Glide
 import com.example.nasaimage.MainActivity
 import com.example.nasaimage.R
-import com.example.nasaimage.data.di.App
 import com.example.nasaimage.databinding.NasaImageFragmentBinding
 import com.example.nasaimage.domain.usecase.NasaDataInteractor
 import com.example.nasaimage.viewBinding
@@ -23,7 +20,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
+class NasaImageFragment : Fragment(R.layout.nasa_image_fragment_start) {
     companion object {
         const val NASA_TODAY = 0
         const val NASA_YESTERDAY = -1
@@ -41,7 +38,6 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
     private val viewModel: NasaImageViewModel by viewModels {
         factory
     }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as? MainActivity)?.mainSubcomponent?.inject(this)
@@ -76,6 +72,7 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment) {
                 textInputEditText.setText("")
             }
         }
+
     }
 
     private fun showBottomSheetBehavior() {

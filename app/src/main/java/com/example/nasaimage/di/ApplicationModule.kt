@@ -1,4 +1,4 @@
-package com.example.nasaimage.data.di
+package com.example.nasaimage.di
 
 import android.app.Application
 import android.content.Context

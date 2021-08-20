@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasaimage.MainActivity
 import com.example.nasaimage.R
-import com.example.nasaimage.data.storage.ThemeStorage
+import com.example.nasaimage.domain.storage.ThemeStorage
 import com.example.nasaimage.databinding.FragmentSettingsStartBinding
 import com.example.nasaimage.viewBinding
 

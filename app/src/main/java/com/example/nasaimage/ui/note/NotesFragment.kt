@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
@@ -40,7 +41,6 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
         override fun swapItems(noteOne: NoteEntity, noteTwo: NoteEntity) {
             viewModel.swapNotes(noteOne, noteTwo)
-            viewModel.fetchNotes()
         }
     })
 

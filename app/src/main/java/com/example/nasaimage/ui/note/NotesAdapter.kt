@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nasaimage.R
@@ -28,7 +29,15 @@ class NotesAdapter(private val onItemClickListener: OnNoteItemClickListener) :
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
         if (fromPosition < data.size && fromPosition >= 0 && toPosition >= 0 && toPosition < data.size) {
+            data.removeAt(fromPosition).apply {
+                data.add(
+                    if (toPosition > fromPosition) toPosition - 1 else toPosition,
+                    this
+                )
+            }
+            notifyItemMoved(fromPosition, toPosition)
             onItemClickListener.swapItems(data[fromPosition], data[toPosition])
+
         }
     }
 
@@ -52,12 +61,12 @@ class NotesAdapter(private val onItemClickListener: OnNoteItemClickListener) :
 
     inner class NoteViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         ItemTouchHelperViewHolder {
-        val noteTitle = itemView.findViewById<TextView>(R.id.note_title)
-        val noteContent = itemView.findViewById<TextView>(R.id.note_content)
-        val deleteImg = itemView.findViewById<ImageView>(R.id.delete_img)
-        val downImg = itemView.findViewById<ImageView>(R.id.move_item_down)
-        val upImg = itemView.findViewById<ImageView>(R.id.move_item_up)
-        val mainLayout = itemView.findViewById<ConstraintLayout>(R.id.note_item_layout)
+        private val noteTitle = itemView.findViewById<TextView>(R.id.note_title)
+        private val noteContent = itemView.findViewById<TextView>(R.id.note_content)
+        private val deleteImg = itemView.findViewById<ImageView>(R.id.delete_img)
+        private val downImg = itemView.findViewById<ImageView>(R.id.move_item_down)
+        private val upImg = itemView.findViewById<ImageView>(R.id.move_item_up)
+        private val mainLayout = itemView.findViewById<ConstraintLayout>(R.id.note_item_layout)
 
         fun bind(noteEntity: NoteEntity) {
             noteTitle.text = noteEntity.title
@@ -79,13 +88,13 @@ class NotesAdapter(private val onItemClickListener: OnNoteItemClickListener) :
             }
             upImg.setOnClickListener {
                 layoutPosition.takeIf { it > 0 }?.also {
-                    onItemClickListener.swapItems(data[it], data[it - 1])
+                    onItemMove(it, it - 1)
                 }
 
             }
             downImg.setOnClickListener {
                 layoutPosition.takeIf { it < data.size - 1 }?.also {
-                    onItemClickListener.swapItems(data[it], data[it + 1])
+                    onItemMove(it, it + 1)
                 }
             }
         }
@@ -95,7 +104,7 @@ class NotesAdapter(private val onItemClickListener: OnNoteItemClickListener) :
         }
 
         override fun onItemClear() {
-            mainLayout.setBackgroundColor(R.attr.myPinkDarkColor)
+            mainLayout.setBackgroundColor(0)
         }
     }
 
@@ -121,8 +130,6 @@ class NotesAdapter(private val onItemClickListener: OnNoteItemClickListener) :
         }
 
     }
-
-
 }
 
 interface OnNoteItemClickListener {

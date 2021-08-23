@@ -1,4 +1,4 @@
-package com.example.nasaimage.data.storage
+package com.example.nasaimage.domain.storage
 
 import android.content.Context
 import com.example.nasaimage.R

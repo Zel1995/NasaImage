@@ -1,7 +1,10 @@
 package com.example.nasaimage.ui.main.subfragments
 
 import android.os.Bundle
+import android.transition.ChangeImageTransform
+import android.transition.TransitionManager
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -23,6 +26,7 @@ class TodayFragment : Fragment(R.layout.today_fragment) {
     private val viewBinding: TodayFragmentBinding by viewBinding(
         TodayFragmentBinding::bind
     )
+    private var bool = false
 
     @Inject
     lateinit var factory: NasaImageViewModelFactory
@@ -32,6 +36,16 @@ class TodayFragment : Fragment(R.layout.today_fragment) {
         (context as? MainActivity)?.mainSubcomponent?.inject(this)
         viewModel.fetchNasa(NasaImageFragment.NASA_TODAY)
         initViewModel()
+        animateImageViewScaleType()
+    }
+    private fun animateImageViewScaleType() {
+        viewBinding.todayImg.setOnClickListener{
+            bool = !bool
+            TransitionManager.beginDelayedTransition(viewBinding.todayContainer,
+                ChangeImageTransform()
+            )
+            viewBinding.todayImg.scaleType = if(bool) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+        }
     }
 
     private fun initViewModel() {
@@ -42,6 +56,22 @@ class TodayFragment : Fragment(R.layout.today_fragment) {
                         .load(it?.hdUrl)
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(viewBinding.todayImg)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loading.collect {
+                    with(viewBinding){
+                        if(it){
+                            todayProgress.visibility = View.VISIBLE
+                            todayImg.visibility = View.GONE
+                        }else{
+                            todayImg.visibility = View.VISIBLE
+                            todayProgress.visibility = View.GONE
+                        }
+                    }
+
                 }
             }
         }

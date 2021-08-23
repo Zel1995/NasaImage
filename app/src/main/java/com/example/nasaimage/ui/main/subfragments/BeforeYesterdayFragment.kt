@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BeforeYesterdayFragment : Fragment(R.layout.before_yesterday_fragment) {
+class BeforeYesterdayFragment (): Fragment(R.layout.before_yesterday_fragment) {
     private val viewBinding: BeforeYesterdayFragmentBinding by viewBinding(
         BeforeYesterdayFragmentBinding::bind
     )
@@ -56,6 +56,22 @@ class BeforeYesterdayFragment : Fragment(R.layout.before_yesterday_fragment) {
                         .load(it?.hdUrl)
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(viewBinding.beforeYesterdayImg)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loading.collect {
+                    with(viewBinding){
+                        if(it){
+                            beforeYesterdayProgress.visibility = View.VISIBLE
+                            beforeYesterdayImg.visibility = View.GONE
+                        }else{
+                            beforeYesterdayProgress.visibility = View.VISIBLE
+                            beforeYesterdayImg.visibility = View.GONE
+                        }
+                    }
+
                 }
             }
         }

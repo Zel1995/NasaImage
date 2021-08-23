@@ -41,9 +41,10 @@ class NotesViewModel(private val localRepository: LocalRepository) : ViewModel()
 
     fun swapNotes(noteOne: NoteEntity, noteTwo: NoteEntity) {
         viewModelScope.launch {
-            localRepository.deleteNote(noteOne)
-            localRepository.addNote(noteTwo.copy(id = noteOne.id))
-            localRepository.addNote(noteOne.copy(id = noteTwo.id))
+            val fromId = noteOne.id
+            val toId = noteTwo.id
+            localRepository.addNote(noteOne.copy(id = toId))
+            localRepository.addNote(noteTwo.copy(id = fromId))
         }
     }
 }

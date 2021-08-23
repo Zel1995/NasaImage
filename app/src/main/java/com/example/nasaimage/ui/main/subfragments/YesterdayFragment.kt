@@ -63,5 +63,21 @@ class YesterdayFragment : Fragment(R.layout.yesterday_fragment) {
                 }
             }
         }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loading.collect {
+                    with(viewBinding){
+                        if(it){
+                            yesterdayProgress.visibility = View.VISIBLE
+                            yesterdayImg.visibility = View.GONE
+                        }else{
+                            yesterdayProgress.visibility = View.VISIBLE
+                            yesterdayImg.visibility = View.GONE
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

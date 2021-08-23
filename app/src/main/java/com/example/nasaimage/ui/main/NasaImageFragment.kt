@@ -38,6 +38,7 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment_start) {
     private val viewModel: NasaImageViewModel by viewModels {
         factory
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as? MainActivity)?.mainSubcomponent?.inject(this)
@@ -51,7 +52,6 @@ class NasaImageFragment : Fragment(R.layout.nasa_image_fragment_start) {
         initViewPager()
         viewModel.fetchNasa(NASA_TODAY)
     }
-
 
 
     private fun initViewPager() {

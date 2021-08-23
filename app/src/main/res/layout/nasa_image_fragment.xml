@@ -90,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="?attr/myBrownColor"
                     app:tabGravity="fill"
+                    app:tabTextColor="@color/pink_dark"
                     app:tabIndicatorAnimationDuration="100"
                     app:tabMode="fixed" />
             </androidx.viewpager.widget.ViewPager>
@@ -103,6 +104,7 @@
             android:layout_margin="@dimen/default_large_margin"
             android:text="@string/open_info"
             app:cornerRadius="5dp"
+            android:fontFamily="@font/the_sonnyfive"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -134,6 +136,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:fontFamily="@font/the_sonnyfive"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
             android:textStyle="italic"
+            android:fontFamily="@font/metrophobic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

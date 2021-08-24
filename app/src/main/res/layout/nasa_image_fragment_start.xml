@@ -27,11 +27,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
+            app:layout_constraintCircleRadius="10dp"
             android:src="@drawable/ic_smile"
             app:backgroundTint="?attr/myOrangeColor"
-            android:padding="@dimen/default_large_margin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -65,11 +65,14 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="360dp"
-            android:layout_margin="@dimen/default_large_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="?attr/myBrownColor"
             app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/info_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -102,6 +105,7 @@
             android:layout_margin="@dimen/default_large_margin"
             android:text="@string/open_info"
             app:cornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -114,6 +118,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_behavior_container"
         style="@style/bottom_behavior_style"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

@@ -64,13 +64,14 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/materialCardView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="360dp"
-            android:layout_margin="@dimen/default_large_margin"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="?attr/myBrownColor"
             app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/info_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
@@ -90,9 +91,9 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="?attr/myBrownColor"
                     app:tabGravity="fill"
-                    app:tabTextColor="@color/pink_dark"
                     app:tabIndicatorAnimationDuration="100"
-                    app:tabMode="fixed" />
+                    app:tabMode="fixed"
+                    app:tabTextColor="@color/pink_dark" />
             </androidx.viewpager.widget.ViewPager>
 
         </com.google.android.material.card.MaterialCardView>
@@ -102,9 +103,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
+            android:fontFamily="@font/the_sonnyfive"
             android:text="@string/open_info"
             app:cornerRadius="5dp"
-            android:fontFamily="@font/the_sonnyfive"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -117,6 +119,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_behavior_container"
         style="@style/bottom_behavior_style"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

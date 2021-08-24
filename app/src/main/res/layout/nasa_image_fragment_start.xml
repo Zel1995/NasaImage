@@ -26,39 +26,40 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            app:layout_constraintCircleRadius="10dp"
             android:src="@drawable/ic_smile"
             app:backgroundTint="?attr/myOrangeColor"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="72dp"
-            android:layout_height="60dp"
-            android:background="?attr/myOrangeColor"
-            app:layout_constraintEnd_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/myBottomBehaviorBgColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:title="@string/NASA" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             style="@style/text_input_layout_style"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/default_margin"
-            android:layout_marginTop="4dp"
+            android:padding="@dimen/default_margin"
             android:hint="@string/request"
             app:endIconCheckable="true"
             app:endIconDrawable="@drawable/ic_wikipedia"
             app:endIconMode="custom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,20 +67,21 @@
             android:id="@+id/materialCardView"
             android:layout_width="0dp"
             android:layout_height="360dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginBottom="10dp"
             android:backgroundTint="?attr/myBrownColor"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/info_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/myBgColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,11 +91,9 @@
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="?attr/myBrownColor"
                     app:tabGravity="fill"
                     app:tabIndicatorAnimationDuration="100"
-                    app:tabMode="fixed"
-                    app:tabTextColor="@color/pink_dark" />
+                    app:tabMode="fixed" />
             </androidx.viewpager.widget.ViewPager>
 
         </com.google.android.material.card.MaterialCardView>
@@ -103,7 +103,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
-            android:fontFamily="@font/the_sonnyfive"
             android:text="@string/open_info"
             app:cornerRadius="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -152,8 +151,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_large_margin"
-            android:textStyle="italic"
             android:fontFamily="@font/metrophobic"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

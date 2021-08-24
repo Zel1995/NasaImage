@@ -1,7 +1,11 @@
 package com.example.nasaimage.ui.main.subfragments
 
 import android.os.Bundle
+import android.transition.ChangeImageTransform
+import android.transition.TransitionManager
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,10 +23,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BeforeYesterdayFragment : Fragment(R.layout.before_yesterday_fragment) {
+class BeforeYesterdayFragment (): Fragment(R.layout.before_yesterday_fragment) {
     private val viewBinding: BeforeYesterdayFragmentBinding by viewBinding(
         BeforeYesterdayFragmentBinding::bind
     )
+    private var bool = false
 
     @Inject
     lateinit var factory: NasaImageViewModelFactory
@@ -32,6 +37,15 @@ class BeforeYesterdayFragment : Fragment(R.layout.before_yesterday_fragment) {
         (context as? MainActivity)?.mainSubcomponent?.inject(this)
         viewModel.fetchNasa(NasaImageFragment.NASA_BEFORE_YESTERDAY)
         initViewModel()
+        animateImageViewScaleType()
+    }
+
+    private fun animateImageViewScaleType() {
+        viewBinding.beforeYesterdayImg.setOnClickListener{
+            bool = !bool
+            TransitionManager.beginDelayedTransition(viewBinding.beforeYesterdayContainer,ChangeImageTransform())
+            viewBinding.beforeYesterdayImg.scaleType = if(bool) ImageView.ScaleType.CENTER_CROP else ImageView.ScaleType.FIT_CENTER
+        }
     }
 
     private fun initViewModel() {
@@ -42,6 +56,22 @@ class BeforeYesterdayFragment : Fragment(R.layout.before_yesterday_fragment) {
                         .load(it?.hdUrl)
                         .placeholder(R.drawable.ic_launcher_foreground)
                         .into(viewBinding.beforeYesterdayImg)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loading.collect {
+                    with(viewBinding){
+                        if(it){
+                            beforeYesterdayProgress.visibility = View.VISIBLE
+                            beforeYesterdayImg.visibility = View.GONE
+                        }else{
+                            beforeYesterdayProgress.visibility = View.VISIBLE
+                            beforeYesterdayImg.visibility = View.GONE
+                        }
+                    }
+
                 }
             }
         }

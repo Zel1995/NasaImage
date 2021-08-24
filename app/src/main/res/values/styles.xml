@@ -6,7 +6,7 @@
         <item name="rippleColor">?attr/myBrownColor</item>
         <item name="android:checkable">true</item>
     </style>
-    
+
     <style name="text_input_layout_style" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:backgroundTint">?attr/myBgColor</item>
         <item name="hintTextColor">@color/black</item>
@@ -38,5 +38,5 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-    
+
 </resources>
